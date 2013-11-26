@@ -1,0 +1,39 @@
+{% extends "chongsite/base.html" %}
+{% block content %}
+<div id="main">
+    <div id="content">
+      <h2 class="page-title">Contact Me</h2>
+      <form id="contact-form" method="post" action={{ action }}>
+        <fieldset>
+        {% csrf_token %}
+        {% for boundfield in form %}
+        {{ boundfield }}
+        {% if boundfield.errors %}
+          {% for error in boundfield.errors %}
+		  	<strong>{{ error|escape }}</strong>
+		  {% endfor %}
+        {% endif %}
+        {% endfor %}
+        <input id="form_submit" class="button" type="submit" name="submit" value="Submit" />
+        <div>
+        {% if thank_message %}
+        {{ thank_message }}
+        {% endif %}
+        </div>
+        </fieldset>
+      </form>
+    </div>
+    <!--end content-->
+    <div id="sidebar">
+      <h3 class="sidebar-title">Get In Touch</h3>
+      <p>Would you like to discuss hiring me for a project you have in mind? If so, please contact me using one of the options below.</p>
+      <b>Email</b>
+      <p>lichong_79@hotmail.com</p>
+      <b>Phone</b>
+      <p>(646) 350-9881</p>
+      <b>Address</b>
+      <p>New York</p>
+    </div>
+    <!--end sidebar-->
+  </div>
+  {% endblock %}

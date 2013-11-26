@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Chong Li's website</title>
+{% load static from staticfiles %}
+<script src="{% static "chongsite/js/jquery-1.10.2.min.js" %}"></script>
+<script src="{% static "chongsite/js/lightbox-2.6.min.js" %}"></script>
+    <script>
+        $(document).ready(function(){
+           $("#id_parent").val("");
+        });
+        $(document).ready(function(){
+            $("#commenters").on("click", ".reply", function(event){
+                event.preventDefault();
+                var form = $("#postcomment").clone(true);
+                form.find('.parent').val($(this).parent().parent().attr('id'));
+                $(this).parent().append(form);
+            });
+        });
+        $(document).ready(function() {
+        $(".children-post").hide()
+        $(".box_open").hide()
+        $(".expanded-parent").click(function(){
+               $(this).next(".children-post").slideToggle();
+            });
+         $('.expanded-parent').click(function () {
+            $(this).find('.box').toggle();
+
+        });
+
+         });
+
+    </script>
+<meta charset="utf-8">
+<link type="text/css" rel="stylesheet" href="{% static "blog/css/blog_base.css" %}" />
+<link type="text/css" rel="stylesheet" href="{% static "chongsite/css/lightbox.css" %}" />
+</head>
+<body>
+<div id="top-banner"></div>
+<div id="wrap">
+  <div id="header">
+    <h1><a href="/home/">Chong Li</a></h1>
+    <h2>A person who likes to sort out complexities</h2>
+    <ul id="nav">
+      <li class="current"><a href="/home/">Home</a><span>/</span></li>
+      <li><a href="/bio/">Bio</a><span>/</span></li>
+      <li><a href="/portfolio/">Portfolio</a><span>/</span>
+        <ul>
+          <li><a href="/portfolio/pictures/">pictures</a></li>
+          <li><a href="#">projects</a></li>
+          <li><a href="#">miscellaneous</a></li>
+        </ul>
+      </li>
+      <li><a href="/blog/">Blog</a><span>/</span>
+      <ul>
+          <li><a href="{% url 'post_archive' %}">Archive Index</a></li>
+          <li><a href="{% url 'tag_map' %}">Tag Map</a></li>
+      </ul>
+      </li>
+      <li><a href="\contact\">Contact</a></li>
+    </ul>
+  </div>
+  <!--end header-->
+  <div id="frontpage-content">
+  {% block content%}
+  {% endblock %}
+
+  </div>
+  <div class="line"></div>
+  <div id="footer">
+    <p class="copyright">Copyright &copy; <a href="/disclaimer/">Domain Name</a> - All Rights Reserved </p>
+   <!-- <p class="social"><a href="#">Follow Me On Twitter »</a><br/><a href="#">Follow Me On Facebook »</a><br/><a href="#">Follow Me On Thumblr »</a></p>-->
+  </div>
+  <!--end footer-->
+</div>
+<!--end wrap-->
+</body>
+</html>

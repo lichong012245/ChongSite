@@ -1,0 +1,51 @@
+{% extends "blog/base.html" %}
+{% load extra_blog_tag %}
+{% load static from staticfiles %}
+
+{% block content %}
+  <div id="content">
+    <h2 class="page-title">Blogs about <b>{{ tag }}</b></h2>
+
+        {% for post in object_list %}
+        <div class="post">
+            <h3 class="post-title"><a href="{% url 'postdetailwithcomment' post.slug %}">{{ post.title }}</a></h3>
+            <h3 class="post-meta">{{ post.created|date }}</h3>
+            {% for image in post.postimage_set.all %}
+			            {% if forloop.first %}
+			            <img src="{{ image.thumbnail.url }}" class="post-image" alt="" />
+			            {% endif %}
+            {% endfor %}
+            <p>{{ post.body|truncatewords:50|safe|linebreaks }}</p>
+        </div>
+
+        <div class="taglist" style="float:right">
+        {% for tag in post.tag.all %}
+        <a href="{% url 'taglistview' tag.name%}" class="tag">{{ tag.name }}</a>&nbsp&nbsp
+        {% endfor %}
+        </div>
+        {% if not forloop.last %}
+        <div class="post-line"></div>
+        {% endif %}
+        {% endfor %}
+        <br/>
+        <br/>
+        <br/>
+        {% if is_paginated %}
+		        <div class="pagination">
+		            <span class="page-links">
+		                {% if page_obj.has_previous %}
+		                    <a href="?page={{ page_obj.previous_page_number }}"><<</a>
+		                {% endif %}
+		                <span class="page-current">
+		                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+		                </span>
+		                {% if page_obj.has_next %}
+		                    <a href="?page={{ page_obj.next_page_number }}">>></a>
+		                {% endif %}
+		            </span>
+		        </div>
+    {% endif %}
+    </div>      
+
+{% endblock %}
+

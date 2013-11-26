@@ -1,0 +1,29 @@
+{% extends "blog/base.html" %}
+{% load extra_blog_tag %}
+{% load static from staticfiles %}
+
+{% block content %}
+  <div id="content">
+    <h2 class="page-title">{{ month|date:"F Y" }}</h2>
+
+
+        {% for post in object_list %}
+        <div class="post">
+            <li>{{ post.created|date:"F j, Y" }}:<h3 class="post-title"><a href="{% url 'postdetailwithcomment' post.slug %}">{{ post.title }}</a></h3></li><br/><br/>
+        </div>
+        {% endfor %}
+        <br/>
+        <br/>
+        <div class="archive_month">
+
+					{% if previous_month %}
+						Previous Month: <a href="{% url 'archive_month_numeric' year=previous_month|date:"Y" month=previous_month|date:"m" %}">{{ previous_month|date:"F Y" }}</a>
+					{% endif %}
+					{% if next_month %}
+						Next Month: <a href="{% url 'archive_month_numeric' year=next_month|date:"Y" month=next_month|date:"m" %}">{{ next_month|date:"F Y" }}</a>
+			        {% endif %}
+        </div>
+        </div>       
+
+{% endblock %}
+

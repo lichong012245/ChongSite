@@ -1,0 +1,31 @@
+{% extends "blog/base.html" %}
+{% load extra_blog_tag %}
+{% load static from staticfiles %}
+
+{% block content %}
+  <div id="content">
+    <h2 class="page-title">Tag Map</h2>
+
+
+         <br/>
+
+        {% for cat in object_list %}
+        <div class="tagcategory">
+            <p class="tag-title">{{ cat.name }}</p>
+        </div>
+
+        <div class="taglist">
+        {% for tag in cat.tag_set.all %}
+        <a href="{% url 'taglistview' tag.name%}" class="tag">{{ tag.name }}</a>&nbsp&nbsp
+        {% endfor %}
+        </div>
+        {% if not forloop.last %}
+        <div class="post-line"></div>
+        {% endif %}
+        {% endfor %}
+        <br/>
+        <br/>
+
+    </div>   
+{% endblock %}
+

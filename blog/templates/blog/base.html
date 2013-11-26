@@ -1,0 +1,27 @@
+{% extends "chongsite/base.html" %}
+{% load extra_blog_tag %}
+{% load static from staticfiles %}
+{% block css %}
+<link type="text/css" rel="stylesheet" href="{% static "blog/css/blog_base.css" %}" />
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block sidebar %}    
+    <div id="archive">
+	    <h3 class="sidebar-title"><a href = "{% url 'post_archive' %}">Archive</a></h3>
+
+         {% for date in date_agg %}		 
+		 	      <p class="expanded-parent"><img class="box" src ="{% static "blog/images/box_closed.png" %}" /><img class="box" style="display: none" src ="{% static "blog/images/box_open.png" %}" />&nbsp{{ date.created_year_month }} <a href="{% url 'archive_month_numeric' year=date.created_year_month|parse_year  month=date.created_year_month|parse_month  %}">({{ date.created_count }})</a></p>
+                   <ul class="children-post">
+		 	      {% for post in post_dic reversed %}
+		 	      	{% if post.created_year_month|ToString == date.created_year_month|ToString %}
+		 	      	    <li><a href="{% url 'postdetailwithcomment' post.slug %}">{{ post.title|truncatewords:4 }}</a></li>
+		 	      	 {% endif %}
+		 	      {% endfor %}
+		 	       </br>
+		 	       </ul>
+	     {% endfor %}
+    </div>	
+{% endblock %}

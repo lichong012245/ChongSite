@@ -1,0 +1,25 @@
+{% extends "chongsite/base.html" %}
+{% block content %}
+
+  <div id="main">
+      <div id="portfolio-content">
+        <h2 class="page-title">Portfolio</h2>
+        <p id="portfolio-intro">Below are some the latest projects that I have been working on. Please <a href="/contact/">get in touch</a> if you have any suggestions or would like to talk about them.</p>
+        <div class="portfolio-item first">
+          <h3>A E-Commerce Shop</h3>
+          <p>Goal is to serve fair big amount concurrent users, so designed and built with scalability conecept</p>
+          <p>Technologies used: django-shop, redis, mongodb, and mysql</p>
+          </div>
+        <!--end portfolio-item-->
+        <div class="portfolio-item">
+          <h3>An online public cms system for a Real Estate firm</h3>
+          <p>Technologies used: django-cms, postgresql</p> </div>
+        <!--end portfolio-item-->
+        <div class="portfolio-item">
+          <h3>A chinese web application/website</h3>
+          <p>This is confidential :)</p> </div>
+        <!--end portfolio-item-->
+      </div>
+    <!--end portfolio-content-->
+
+{% endblock %}

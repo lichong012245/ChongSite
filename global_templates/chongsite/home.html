@@ -1,0 +1,60 @@
+{% extends "chongsite/base.html" %}
+{% load static from staticfiles %}
+{% block content %}
+    <div id="featured-section">
+      <h3>40% Thinker + 60% Practitioner = A thinking Practitioner</h3>	  		 
+      <div class="featured-section-img">
+	  <img   src="{% static "chongsite/images/home_1.jpg" %}" width="400" height="225" alt="" />
+	  <img   src="{% static "chongsite/images/home_2.jpg" %}" width="400" height="225" alt="" />
+	  <img   src="{% static "chongsite/images/home_3.jpg" %}" width="400" height="225" alt="" />
+	  <img   src="{% static "chongsite/images/home_4.jpg" %}" width="400" height="225" alt="" />
+	  <img   src="{% static "chongsite/images/home_5.jpg" %}" width="400" height="225" alt="" />
+	  </div>
+	  
+      <div id="featured-section-details">
+        <h4>Hi there, my name is Chong (John) Li &amp; welcome to my website</h4>
+		
+        <p>I work as a litigation support analyst in New York, and my interest is on all kinds of web technologies, and especially how to develop scalable web applications.</p>
+        <a class="button" href="{% url 'bio' %}">View My Bio</a> </div>
+      <!--end featured-section-details-->
+      </div>
+    <div class="line"></div>
+	    <div id="latest-projects">
+	      <h3>Highlights</h3>
+	      <div class="latest-project first-latest-project">
+	        <p>Latest blog post</p>
+	        <a href="#"><img width="280" height="190" src="images/280x190.gif" class="post-image" alt="" /></a> </div>
+	      <!--end latest-project-->
+	      <div class="latest-project">
+	        <p>[Project Title]</p>
+	        <a href="#"><img width="280" height="190" src="images/280x190.gif" class="post-image" alt="" /></a> </div>
+	      <!--end latest-project-->
+	      <div class="latest-project">
+	        <p>My Location</p>
+	        <iframe class="map" width="280" height="190" frameborder="0" scrolling="yes" marginheight="0" marginwidth="0" src="http://maps.google.com/?ie=UTF8&amp;t=m&amp;ll=40.705382,-74.00561&amp;spn=0.003381,0.017231&amp;z=10&amp;output=embed"></iframe></div>
+	      <!--end latest-project-->
+	    </div>
+    <!--end latest-projects-->
+     <div class="line"></div>
+	    <div id="overview">
+	      <div class="overview-block first">
+	        <h4>About Me</h4>
+	        <p>I've been designing and developing high quality websites for over 12 years. My clients include a range of small businesses, agencies, and academic institutions.</p>
+	        <p><a href="{% url 'bio' %}">Learn More About Me >> </a></p>
+	      </div>
+	      <div class="overview-block">
+		          <h4>Services Available</h4>
+		          <p>My core services include web design and development, search engine optimisation, online branding and marketing, and user experience consultancy work.</p>
+		          <p><a href="#">View Services Available >></a></p>
+		        </div>
+		        <!--end overview-block-->
+		        <div class="overview-block">
+		          <h4>Online Publications</h4>
+		          <p>I have been involved in some research projects about biomedical chemistry back to college. A paper has been published. (:</p>
+		          <p><a href="{% url 'misc' %}">View My Publications >> </a></p>
+		        </div>
+		        <!--end overview-block-->
+		      </div>
+    <!--end overview-->
+
+{% endblock %}
